@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#deb97f"> <!-- Updated background color -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price Survey"
+        android:textSize="24sp"
+        android:textColor="#333"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Store Name Dropdown -->
+    <AutoCompleteTextView
+        android:id="@+id/storeNameDropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Store Name"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Location Dropdown -->
+    <AutoCompleteTextView
+        android:id="@+id/locationDropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Location"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Product Dropdown -->
+    <AutoCompleteTextView
+        android:id="@+id/productDropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Product"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Price Input -->
+    <EditText
+        android:id="@+id/priceEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Price"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Barcode Input -->
+    <EditText
+        android:id="@+id/barcodeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Barcode"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Send Button -->
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"/>
+
+</LinearLayout>

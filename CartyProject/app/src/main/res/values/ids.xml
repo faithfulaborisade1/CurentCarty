@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="drawer_layout" type="id" />
+    <item name="toolbar" type="id" />
+    <item name="welcome_text" type="id" />
+    <item name="nav_settings" type="id" />
+    <item name="nav_about" type="id" />
+    <!-- Add constant integer values for your IDs -->
+    <item name="id_drawer_layout" type="id" />
+    <item name="id_toolbar" type="id" />
+    <item name="id_welcome_text" type="id" />
+    <item name="id_nav_settings" type="id" />
+    <item name="id_nav_about" type="id" />
+    <item name="main" type="id" />
+</resources>

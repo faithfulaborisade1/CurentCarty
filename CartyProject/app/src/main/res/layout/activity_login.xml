@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".Login">
+
+    <TextView
+    android:id="@+id/textView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="100dp"
+    android:fontFamily="@font/poppinsbold"
+    android:gravity="center"
+    android:text="@string/login"
+    android:textColor="#670525"
+    android:textSize="30sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:targetApi="jelly_bean" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/textView"
+    app:layout_constraintVertical_bias="0.4"
+    tools:layout_editor_absoluteX="0dp">
+
+<com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/textInputLayoutUsername"
+    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="30dp"
+    android:hint="@string/username"
+    app:boxStrokeColor="#670525"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+<com.google.android.material.textfield.TextInputEditText
+    android:id="@+id/username"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="#670525"
+    android:fontFamily="@font/poppinsmedium"
+    android:hint="Username" />
+
+</com.google.android.material.textfield.TextInputLayout>
+
+<com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/textInputLayoutPassword"
+    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="30dp"
+    android:hint="@string/password"
+    app:boxStrokeColor="#670525"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutUsername">
+
+<com.google.android.material.textfield.TextInputEditText
+    android:id="@+id/password"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPassword"
+    android:textColor="#670525"
+    android:fontFamily="@font/poppinsmedium"
+    android:hint="Password" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+<ProgressBar
+    android:id="@+id/progress"
+    style="?android:attr/progressBarStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
+
+<Button
+    android:id="@+id/buttonLogin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:text="@string/login"
+    android:textColor="#670525"
+    android:backgroundTint="#e4bf80"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/progress" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

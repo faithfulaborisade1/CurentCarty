@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F0F0F0"
+    tools:context=".Feedback">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Feedback Form"
+        android:textSize="24sp"
+        android:textColor="#333"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"/>
+
+    <Spinner
+        android:id="@+id/feedbackProductSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/product"
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_gray"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/feedbackTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/title"
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_gray"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/feedbackStoreSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/store_name"
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_gray"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/feedbackDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/description"
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_gray"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:minHeight="150dp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/submitFeedbackButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Feedback"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"/>
+</LinearLayout>
