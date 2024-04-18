@@ -1,24 +1,18 @@
-package com.example.cartyproject;
-
 public class Product {
     private String name;
-    private String category;
     private String description;
     private double price;
+    private int imageResource;  // Drawable resource ID for the product image
 
-    public Product(String name, String category, String description, double price) {
+    public Product(String name, String description, double price, int imageResource) {
         this.name = name;
-        this.category = category;
         this.description = description;
         this.price = price;
+        this.imageResource = imageResource;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getCategory() {
-        return category;
     }
 
     public String getDescription() {
@@ -27,5 +21,9 @@ public class Product {
 
     public double getPrice() {
         return price;
+    }
+
+    public int getImageResource() {
+        return imageResource;
     }
 }

@@ -26,16 +26,28 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Home"
+            android:name=".ProductActivity"
             android:exported="false"
             android:theme="@style/Theme.Design.Light.NoActionBar"/>
 
+        <activity
+            android:name=".Dashboard"
+            android:exported="true"
+            android:theme="@style/Theme.Design.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Home"
+            android:exported="false"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".PriceSurvey"
             android:exported="false"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
-
         <activity
             android:name=".Profile"
             android:exported="false"
@@ -43,34 +55,17 @@
         <activity
             android:name=".DashboardMain"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".AddProductActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".Product"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name=".Feedback"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Design.Light.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
         <activity
             android:name=".SignUp"
             android:exported="false"
