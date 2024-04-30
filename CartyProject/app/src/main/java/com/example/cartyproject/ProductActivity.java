@@ -39,7 +39,7 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void fetchProducts(String store) {
-        String url = "http://192.168.8.30/LoginRegister/fetch_products.php?store=" + store;
+        String url = "http://192.168.110.210/LoginRegister/fetch_products.php?store=" + store;
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
                     List<Product> products = new ArrayList<>();

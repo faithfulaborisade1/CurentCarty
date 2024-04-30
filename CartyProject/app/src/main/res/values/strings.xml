@@ -22,7 +22,7 @@
     <string name="save">Save</string>
     <string name="product_name">Product Name</string>
     <string name="product_description">Product Description</string>
-<!--    <string name="product_price">Product Price</string>-->
+    <!--    <string name="product_price">Product Price</string>-->
     <string name="store_name">Store Name</string>
     <string name="description">Description</string>
     <string name="title">Title</string>
@@ -50,11 +50,11 @@
     </string-array>
 
 
-<!--    <string-array name="store_names_price">-->
-<!--        <item>Store 1</item>-->
-<!--        <item>Store 2</item>-->
-<!--        <item>Store 3</item>-->
-<!--    </string-array>-->
+    <!--    <string-array name="store_names_price">-->
+    <!--        <item>Store 1</item>-->
+    <!--        <item>Store 2</item>-->
+    <!--        <item>Store 3</item>-->
+    <!--    </string-array>-->
 
     <string-array name="locations">
 

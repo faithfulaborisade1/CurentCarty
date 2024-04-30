@@ -43,6 +43,15 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        String username = getIntent().getStringExtra("username");
+        if (username != null) {
+            Log.i("Dashboard", "Received username: " + username);
+        } else {
+            Log.e("Dashboard", "Username is null.");
+        }
+
+
+
         storeSpinner = findViewById(R.id.storeSpinner);
         townSpinner = findViewById(R.id.townSpinner); // Ensure you have this Spinner in your layout
         countySpinner = findViewById(R.id.countySpinner);
@@ -70,7 +79,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     }
 
     private void loadStores() {
-        String url = "http://192.168.8.30/LoginRegister/fetch_stores.php";
+        String url = "http://192.168.110.210/LoginRegister/fetch_stores.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
                     List<String> stores = new ArrayList<>();
@@ -128,6 +137,8 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             intent = new Intent(this, Home.class);
         } else if (id == R.id.profile) {
             intent = new Intent(this, Profile.class);
+            String username = getIntent().getStringExtra("username");
+            intent.putExtra("username", username);
         } else if (id == R.id.feedBack) {
             intent = new Intent(this, Feedback.class);
         } else if (id == R.id.pricesurvey) {

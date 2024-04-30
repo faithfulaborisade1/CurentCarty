@@ -85,7 +85,7 @@ public class PriceSurvey extends AppCompatActivity {
                 // Parameters and data
                 String[] field = new String[]{"barcode", "price", "storeName", "location", "product"};
                 String[] data = new String[]{barcode, price, storeName, location, product};
-                PutData putData = new PutData("http://192.168.46.210/LoginRegister/priceSurvey.php", "POST", field, data);
+                PutData putData = new PutData("http://192.168.110.210/LoginRegister/priceSurvey.php", "POST", field, data);
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
 
