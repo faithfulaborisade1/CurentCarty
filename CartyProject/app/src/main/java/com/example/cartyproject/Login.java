@@ -1,8 +1,8 @@
 package com.example.cartyproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,17 +10,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
     TextInputEditText textInputEditTextUsername, textInputEditTextPassword;
     Button buttonLogin;
-//    TextView textViewSignUp;
     ProgressBar progressBar;
 
     @Override
@@ -31,69 +34,46 @@ public class Login extends AppCompatActivity {
         textInputEditTextUsername = findViewById(R.id.username);
         textInputEditTextPassword = findViewById(R.id.password);
         buttonLogin = findViewById(R.id.buttonLogin);
-//        textViewSignUp = findViewById(R.id.signUpText);
         progressBar = findViewById(R.id.progress);
 
-//        textViewSignUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), SignUp.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        buttonLogin.setOnClickListener(v -> {
+            String username = textInputEditTextUsername.getText().toString();
+            String password = textInputEditTextPassword.getText().toString();
 
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String fullname, username, password, email;
-                username = String.valueOf(textInputEditTextUsername.getText());
-                password = String.valueOf(textInputEditTextPassword.getText());
+            if (!username.isEmpty() && !password.isEmpty()) {
+                progressBar.setVisibility(View.VISIBLE);
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(() -> {
+                    String[] field = new String[]{"username", "password"};
+                    String[] data = new String[]{username, password};
+                    PutData putData = new PutData("http://192.168.154.210/LoginRegister/login.php", "POST", field, data);
+                    if (putData.startPut()) {
+                        if (putData.onComplete()) {
+                            progressBar.setVisibility(View.GONE);
+                            String result = putData.getResult();
+                            try {
+                                JSONObject jsonObject = new JSONObject(result);
+                                if (jsonObject.getString("status").equals("success")) {
+                                    SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("userId", jsonObject.getString("userId"));
+                                    editor.apply();
 
-                if(!username.equals("") && !password.equals("")) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    //Start ProgressBar first (Set visibility VISIBLE)
-                    Handler handler = new Handler(Looper.getMainLooper());
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //Starting Write and Read data with URL
-                            //Creating array for parameters
-                            String[] field = new String[2];
-                            field[0] = "username";
-                            field[1] = "password";
-                            //Creating array for data
-                            String[] data = new String[2];
-                            data[0] = username;
-                            data[1] = password;
-                            PutData putData = new PutData("http://192.168.110.210/LoginRegister/login.php", "POST", field, data);
-                            if (putData.startPut()) {
-                                if (putData.onComplete()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    String result = putData.getResult();
-                                    if (result.equals("Login Success")){
-                                        Log.i("PutData", "Login Success");
-                                        Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
-                                        intent.putExtra("username", username);
-                                        Log.i("userName",username);
-                                        startActivity(intent);
-                                        finish();
-                                    }else {
-                                        Log.i("PutData", result);
-                                        Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                                    }
-//                                    //End ProgressBar (Set visibility to GONE)
-//                                    Log.i("PutData", result);
+                                    Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            //End Write and Read data with URL
                         }
-                    });
-                }else {
-                    Toast.makeText(getApplicationContext(),"All fields are required", Toast.LENGTH_LONG).show();
-                }
-
+                    }
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_LONG).show();
             }
         });
     }
