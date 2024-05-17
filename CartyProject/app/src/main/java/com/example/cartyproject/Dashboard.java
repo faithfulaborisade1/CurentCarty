@@ -1,6 +1,8 @@
 package com.example.cartyproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +48,34 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 // Intent to open StoresActivity which contains TabLayout
                 startActivity(new Intent(Dashboard.this, StoresActivity.class));
                 return true;
-            } else if (itemId == R.id.nav_map) {
-                // Do something when Map is clicked in bottom nav
+            }  else if (itemId == R.id.search) {
+                startActivity(new Intent(Dashboard.this, Search.class));
+            return true;
+        } else if (itemId == R.id.nav_map) {
+                openGoogleMaps();
                 return true;
             }
             return false;
         });
 
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
     }
 
+
+    private void openGoogleMaps() {
+        // Create an intent to open Google Maps
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=restaurants");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        } else {
+            // Handle the case where Google Maps is not installed
+            Uri webUri = Uri.parse("https://www.google.com/maps/search/?api=1&query=restaurants");
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, webUri);
+            startActivity(webIntent);
+        }
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -68,9 +90,23 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             startActivity(new Intent(this, Feedback.class));
         } else if (itemId == R.id.pricesurvey) {
             startActivity(new Intent(this, PriceSurvey.class));
+        } else if (itemId == R.id.logout) {
+            // Handle logout
+            logout();
         }
 
         return true;
     }
 
+    private void logout() {
+        // Clear SharedPreferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+        // Navigate back to the Login activity
+        Intent intent = new Intent(Dashboard.this, Login.class);
+        startActivity(intent);
+        finish();
+    }
 }

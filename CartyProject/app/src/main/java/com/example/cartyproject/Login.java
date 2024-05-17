@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -25,20 +26,36 @@ public class Login extends AppCompatActivity {
     TextInputEditText textInputEditTextUsername, textInputEditTextPassword;
     Button buttonLogin;
     ProgressBar progressBar;
+    CheckBox checkBoxRememberMe;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("LoginActivity", "Current theme: " + getResources().getResourceName(R.style.Theme_CartyProject));
         setContentView(R.layout.activity_login);
 
         textInputEditTextUsername = findViewById(R.id.username);
         textInputEditTextPassword = findViewById(R.id.password);
         buttonLogin = findViewById(R.id.buttonLogin);
         progressBar = findViewById(R.id.progress);
+        checkBoxRememberMe = findViewById(R.id.checkBoxRememberMe);
+
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+
+        // Check if remember me data exists
+        if (sharedPreferences.getBoolean("rememberMe", false)) {
+            String savedUsername = sharedPreferences.getString("username", "");
+            String savedPassword = sharedPreferences.getString("password", "");
+            textInputEditTextUsername.setText(savedUsername);
+            textInputEditTextPassword.setText(savedPassword);
+            checkBoxRememberMe.setChecked(true);
+        }
 
         buttonLogin.setOnClickListener(v -> {
             String username = textInputEditTextUsername.getText().toString();
             String password = textInputEditTextPassword.getText().toString();
+            boolean rememberMe = checkBoxRememberMe.isChecked();
 
             if (!username.isEmpty() && !password.isEmpty()) {
                 progressBar.setVisibility(View.VISIBLE);
@@ -46,7 +63,7 @@ public class Login extends AppCompatActivity {
                 handler.post(() -> {
                     String[] field = new String[]{"username", "password"};
                     String[] data = new String[]{username, password};
-                    PutData putData = new PutData("http://192.168.154.210/LoginRegister/login.php", "POST", field, data);
+                    PutData putData = new PutData("http://192.168.8.30/LoginRegister/login.php", "POST", field, data);
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
                             progressBar.setVisibility(View.GONE);
@@ -54,8 +71,14 @@ public class Login extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(result);
                                 if (jsonObject.getString("status").equals("success")) {
-                                    SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    if (rememberMe) { // Save username and password if Remember Me is checked
+                                        editor.putBoolean("rememberMe", true);
+                                        editor.putString("username", username);
+                                        editor.putString("password", password);
+                                    } else {
+                                        editor.clear(); // Clear the saved credentials if Remember Me is unchecked
+                                    }
                                     editor.putString("userId", jsonObject.getString("userId"));
                                     editor.apply();
 

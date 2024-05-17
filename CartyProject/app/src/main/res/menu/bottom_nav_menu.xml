@@ -8,6 +8,10 @@
         android:icon="@drawable/store"
         android:title="Stores" />
     <item
+        android:id="@+id/search"
+        android:icon="@drawable/search_icon"
+        android:title="Map" />
+    <item
         android:id="@+id/nav_map"
         android:icon="@drawable/map"
         android:title="Map" />

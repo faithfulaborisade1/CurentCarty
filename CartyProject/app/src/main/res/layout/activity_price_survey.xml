@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#deb97f"> <!-- Updated background color -->
+    android:background="#deb97f">
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,6 +66,25 @@
         android:padding="10dp"
         android:layout_marginBottom="16dp"/>
 
+    <!-- Date Input -->
+    <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp"
+        android:layout_marginBottom="16dp"
+        android:focusable="false"/>
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone" />
+
     <!-- Send Button -->
     <Button
         android:id="@+id/sendButton"
@@ -76,5 +95,4 @@
         android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="24dp"/>
-
 </LinearLayout>

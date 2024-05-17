@@ -66,7 +66,7 @@ public class MyStoresFragment extends Fragment {
 
 
 
-        String url = "http://192.168.154.210/LoginRegister/my_store.php?user_id=" + userId; // Use HTTPS
+        String url = "http://192.168.8.30/LoginRegister/my_store.php?user_id=" + userId; // Use HTTPS
         RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {

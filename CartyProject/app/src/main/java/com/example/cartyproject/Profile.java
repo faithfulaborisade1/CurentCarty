@@ -84,7 +84,7 @@ public class Profile extends AppCompatActivity {
     }
 
     private void fetchUserProfile(String username, String tableName) {
-        String url = "http://192.168.154.210/LoginRegister/getUserProfile.php";
+        String url = "http://192.168.8.30/LoginRegister/getUserProfile.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -122,7 +122,7 @@ public class Profile extends AppCompatActivity {
 
 
     private void updateUserProfile(String username, String fullname, String email, String contact) {
-        String url = "http://192.168.154.210/LoginRegister/updateUserProfile.php";
+        String url = "http://192.168.8.30/LoginRegister/updateUserProfile.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

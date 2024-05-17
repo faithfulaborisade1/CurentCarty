@@ -17,5 +17,9 @@
         android:icon="@drawable/ic_baseline_privacy_tip_24"
         android:title="@string/pricesurvey"/>
 
+    <item android:id="@+id/logout"
+        android:icon="@drawable/logout_icon"
+        android:title="@string/logout"/>
+
 
 </menu>

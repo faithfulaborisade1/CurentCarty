@@ -58,7 +58,7 @@ public class AllStoresFragment extends Fragment {
     }
 
     private void loadStores() {
-        String url = "http://192.168.154.210/LoginRegister/fetch_stores.php"; // Change to your actual URL
+        String url = "http://192.168.8.30/LoginRegister/fetch_stores.php"; // Change to your actual URL
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(

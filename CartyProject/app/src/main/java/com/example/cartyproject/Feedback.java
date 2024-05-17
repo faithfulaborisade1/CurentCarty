@@ -89,7 +89,7 @@ public class Feedback extends AppCompatActivity {
                     data[3] = description;
 
                     // PutData points to your feedback submission endpoint
-                    PutData putData = new PutData("http://192.168.154.210/LoginRegister/feedback.php", "POST", field, data);
+                    PutData putData = new PutData("http://192.168.8.30/LoginRegister/feedback.php", "POST", field, data);
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
                             String result = putData.getResult();
