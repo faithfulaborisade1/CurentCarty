@@ -3,12 +3,14 @@ package com.example.cartyproject;
 public class Store {
     private String name;
     private String location;
-    private int imageId;  // Optional, if you have store images
+    private String facing;
+    private String imageUrl;
 
-    public Store(String name, String location, int imageId) {
+    public Store(String name, String location, String facing, String imageUrl) {
         this.name = name;
         this.location = location;
-        this.imageId = imageId;
+        this.facing = facing;
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -19,7 +21,11 @@ public class Store {
         return location;
     }
 
-    public int getImageId() {
-        return imageId;
+    public String getFacing() {
+        return facing;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 }

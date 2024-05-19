@@ -1,15 +1,10 @@
 package com.example.cartyproject;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -23,8 +18,6 @@ import java.util.List;
 
 public class ProductActivity extends AppCompatActivity {
     private ListView productList;
-    private ArrayAdapter<String> adapter;
-    private ArrayList<String> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +25,6 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
 
         productList = findViewById(R.id.productList);
-        items = new ArrayList<>();
 
         String storeName = getIntent().getStringExtra("storeName");
         fetchProducts(storeName);
@@ -49,12 +41,14 @@ public class ProductActivity extends AppCompatActivity {
                             Product product = new Product(
                                     productObject.getString("prod_name"),
                                     productObject.getString("category"),
-                                    productObject.getString("description"),  // Make sure your JSON has these keys
-                                    productObject.getDouble("price")
+                                    productObject.getString("description"),
+                                    productObject.getDouble("price"),
+                                    productObject.getString("prod_pic")
                             );
                             products.add(product);
                         }
-                        productList.setAdapter(new ProductAdapter(this, products));
+                        ProductAdapter adapter = new ProductAdapter(this, products);
+                        productList.setAdapter(adapter);
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), "Error parsing products", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -65,5 +59,4 @@ public class ProductActivity extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(jsonArrayRequest);
     }
-
 }

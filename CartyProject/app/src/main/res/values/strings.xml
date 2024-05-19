@@ -120,5 +120,7 @@
     <string name="logout">Logout</string>
     <string name="remember_me" />
     <string name="remenber_me">Remenber me</string>
+    <string name="product_image_desc" />
+    <string name="store_image" />
 
 </resources>

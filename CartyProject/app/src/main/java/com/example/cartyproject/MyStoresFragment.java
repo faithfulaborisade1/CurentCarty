@@ -64,13 +64,10 @@ public class MyStoresFragment extends Fragment {
             return;
         }
 
-
-
-        String url = "http://192.168.8.30/LoginRegister/my_store.php?user_id=" + userId; // Use HTTPS
+        String url = "http://192.168.8.30/LoginRegister/my_store.php?user_id=" + userId;
         RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
-//
                     try {
                         storeList.clear();
                         if (response.length() == 0) {
@@ -80,7 +77,9 @@ public class MyStoresFragment extends Fragment {
                             JSONObject store = response.getJSONObject(i);
                             String name = store.getString("client_name");
                             String address = store.getString("client_address");
-                            storeList.add(new Store(name, address, R.drawable.store_placeholder));
+                            String facing = store.getString("facing");
+                            String imageUrl = store.getString("image_url");
+                            storeList.add(new Store(name, address, facing, imageUrl));
                         }
                         adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
@@ -89,7 +88,6 @@ public class MyStoresFragment extends Fragment {
                     }
                 },
                 error -> {
-//
                     Toast.makeText(getContext(), "Error fetching data: " + error.getMessage(), Toast.LENGTH_LONG).show();
                 }
         );

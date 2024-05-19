@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -44,6 +47,7 @@ public class ProductAdapter extends BaseAdapter {
             holder.category = convertView.findViewById(R.id.textViewCategory);
             holder.description = convertView.findViewById(R.id.textViewDescription);
             holder.price = convertView.findViewById(R.id.textViewPrice);
+            holder.productImage = convertView.findViewById(R.id.imageViewProduct);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -55,6 +59,7 @@ public class ProductAdapter extends BaseAdapter {
         holder.category.setText(product.getCategory());
         holder.description.setText(product.getDescription());
         holder.price.setText(String.format(context.getString(R.string.product_price), product.getPrice()));
+        Glide.with(context).load(product.getProductPic()).into(holder.productImage);
 
         return convertView;
     }
@@ -64,5 +69,6 @@ public class ProductAdapter extends BaseAdapter {
         TextView category;
         TextView description;
         TextView price;
+        ImageView productImage;
     }
 }

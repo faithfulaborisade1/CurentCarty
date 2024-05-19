@@ -10,17 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.cartyproject.*;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AllStoresFragment extends Fragment {
 
@@ -37,20 +37,13 @@ public class AllStoresFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all_stores, container, false);
         recyclerView = view.findViewById(R.id.rvAllStores);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Initialize your store list here, perhaps by fetching from a database
         storeList = new ArrayList<>();
         adapter = new StoreAdapter(getActivity(), storeList);
-//        adapter = new StoreAdapter(storeList);
         recyclerView.setAdapter(adapter);
 
         loadStores();  // Method to load stores from the database
@@ -67,18 +60,16 @@ public class AllStoresFragment extends Fragment {
                 null,
                 response -> {
                     try {
-                        // Clear existing data in the list
                         storeList.clear();
 
-                        // Parse the JSON response array
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject store = response.getJSONObject(i);
                             String name = store.getString("client_name");
                             String address = store.getString("client_address");
-                            // Assuming you have a drawable resource for the store image
-                            storeList.add(new Store(name, address, R.drawable.store_placeholder));
+                            String facing = store.getString("facing");
+                            String imageUrl = store.getString("image_url");
+                            storeList.add(new Store(name, address, facing, imageUrl));
                         }
-                        // Notify the adapter that data has changed to refresh the RecyclerView
                         adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -90,5 +81,4 @@ public class AllStoresFragment extends Fragment {
 
         requestQueue.add(jsonArrayRequest);
     }
-
 }

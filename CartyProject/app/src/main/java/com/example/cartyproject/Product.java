@@ -5,12 +5,14 @@ public class Product {
     private String category;
     private String description;
     private double price;
+    private String productPic;
 
-    public Product(String name, String category, String description, double price) {
+    public Product(String name, String category, String description, double price, String productPic) {
         this.name = name;
         this.category = category;
         this.description = description;
         this.price = price;
+        this.productPic = productPic;
     }
 
     public String getName() {
@@ -27,5 +29,9 @@ public class Product {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getProductPic() {
+        return productPic;
     }
 }
